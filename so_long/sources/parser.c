@@ -6,7 +6,7 @@
 /*   By: jsanfeli <jsanfeli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:28:20 by jsanfeli          #+#    #+#             */
-/*   Updated: 2021/12/08 04:33:39 by jsanfeli         ###   ########.fr       */
+/*   Updated: 2021/12/09 13:06:05 by jsanfeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ void parser(int argc, char const **argv, t_map *map)
 	if(fd == -1)
 		ft_error("Error wyd u entered a wrong file directory", 0, map);
 	map->map = mountmap(fd, map);
+	close(fd);
 	map->y -= 1;
 	checkmap(map);
 }

@@ -6,7 +6,7 @@
 /*   By: jsanfeli <jsanfeli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 16:13:57 by jsanfeli          #+#    #+#             */
-/*   Updated: 2021/12/08 04:37:24 by jsanfeli         ###   ########.fr       */
+/*   Updated: 2021/12/09 15:04:51 by jsanfeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_map
 	size_t	c;
 	size_t	p;
 	size_t	e;
+	int		count;
 	
 }	t_map;
 
