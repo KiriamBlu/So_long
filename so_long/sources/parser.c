@@ -75,7 +75,8 @@ static void lesthavealook(t_map *map)
 			}
 			else if(map->map[i][j] == 'E')
 				map->e += 1;
-			else if(map->map[i][j] != '0' && map->map[i][j] != '1')
+			else if(map->map[i][j] != '0' && map->map[i][j] != '1'
+				&& map->map[i][j] != 'X')
 				ft_error("I DONT LIKE THAT U TRYED TO CHEAT", 1, map);				
 		}
 	}

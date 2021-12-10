@@ -80,6 +80,13 @@ int key_pressed (int keycode, t_map *map)
 			printf("Moves: %d\n", map->count);
 		}
 	}
+	enemymoves(map);
+	if(map->map[map->py][map->px] == 'X')
+	{
+		sleep(1);
+		printf("%s\n", "You lose");
+		closewin(map);
+	}
 	return(0);
 }
 

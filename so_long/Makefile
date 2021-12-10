@@ -6,6 +6,7 @@ SRCS =  ./gnl/get_next_line.c \
 		./sources/main.c \
 		./sources/parser.c \
 		./sources/drawmap.c \
+		./sources/enemymoves.c
 
 OBJS = ${SRCS:.c=.o}
 
