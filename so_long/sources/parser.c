@@ -16,7 +16,7 @@ void ft_error(char *str, int c, t_map *map)
 {
 	printf("%s\n", str);
 	if(c == 1)
-		free(map->map);
+		freemap(map);
 	exit(0);
 }
 
@@ -68,7 +68,11 @@ static void lesthavealook(t_map *map)
 			if(map->map[i][j] == 'C')
 				map->c += 1;
 			else if(map->map[i][j] == 'P')
+			{
 				map->p += 1;
+				map->px = j;
+				map->py = i;
+			}
 			else if(map->map[i][j] == 'E')
 				map->e += 1;
 			else if(map->map[i][j] != '0' && map->map[i][j] != '1')

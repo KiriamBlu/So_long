@@ -31,6 +31,8 @@ typedef struct s_map
 	size_t	x;
 	size_t	c;
 	size_t	p;
+	int 	px;
+	int		py;
 	size_t	e;
 	int		count;
 	
@@ -38,6 +40,7 @@ typedef struct s_map
 
 void parser(int argc, char const **argv, t_map *map);
 void drawmap(t_map *map);
-
+void freemap(t_map *map);
+int moves(int keycode, t_map *map);
 
 #endif

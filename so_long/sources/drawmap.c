@@ -38,16 +38,88 @@ void drawmap(t_map *map)
 		k = -1;
 		while (++k <= map->x)
 		{
+			drawblock(map, i, k, "./sprites/BRIK.xpm");
 			if (map->map[i][k] == '1')
-				drawblock(map, i, k, "./sprites/bloque.XPM");
+				drawblock(map, i, k, "./sprites/WHOALL.xpm");
 			if (map->map[i][k] == '0')
-				drawblock(map, i, k, "./sprites/fondo.XPM");
+				drawblock(map, i, k, "./sprites/BRIK.xpm");
 			if (map->map[i][k] == 'P')
-				drawblock(map, i, k, "./sprites/personaje1.XPM");
+				drawblock(map, i, k, "./sprites/ANIM1F_2.xpm");
 			if (map->map[i][k] == 'C')
-				drawblock(map, i, k, "./sprites/pineaple.XPM");
-			if (map->map[i][k] == 'E')
-				drawblock(map, i, k, "./sprites/puerta1.XPM");
+				drawblock(map, i, k, "./sprites/collectionable.xpm");
+			if (map->map[i][k] == 'E' && map->c != 0)
+				drawblock(map, i, k, "./sprites/puerta1.xpm");
 		}
 	}
+}
+
+void xmoves(int keycode, t_map *map)
+{
+	drawblock(map, map->py, map->px, "./sprites/BRIK.xpm");
+	if (keycode == 13)
+	{
+		map->py -= 1;
+		if(map->c != 0)
+			if(map->map[map->py][map->px] == 'E')
+				map->py += 1;
+	}
+	else if (keycode == 1)
+	{
+		map->py += 1;
+		if(map->c != 0)
+			if(map->map[map->py][map->px] == 'E')
+				map->py -= 1;
+	}
+	if(map->count % 2 == 0 && keycode == 13)
+		drawblock(map, map->py, map->px, "./sprites/ANIM1F_6.xpm");
+	else if(keycode == 13)
+		drawblock(map, map->py, map->px, "./sprites/ANIM1F_9.xpm");
+	else if(map->count % 2 == 0 && keycode == 1)
+		drawblock(map, map->py, map->px, "./sprites/ANIM1F_1.xpm");
+	else if(keycode == 1)
+		drawblock(map, map->py, map->px, "./sprites/ANIM1F_3.xpm");
+}
+
+void ymoves(int keycode, t_map *map)
+{
+	drawblock(map, map->py, map->px, "./sprites/BRIK.xpm");
+	if (keycode == 0)
+	{
+		map->px -= 1;
+		if(map->c != 0)
+			if(map->map[map->py][map->px] == 'E')
+				map->px += 1;
+	}
+	else if (keycode == 2)
+	{
+		map->px += 1;
+		if(map->c != 0)
+			if(map->map[map->py][map->px] == 'E')
+				map->px -= 1;
+	}
+	if(map->count % 2 == 0 && keycode == 0)
+		drawblock(map, map->py, map->px, "./sprites/ANIM1F_4.xpm");
+	else if(keycode == 0)
+		drawblock(map, map->py, map->px, "./sprites/ANIM1F_7.xpm");
+	else if(map->count % 2 == 0 && keycode == 2)
+		drawblock(map, map->py, map->px, "./sprites/ANIM1F_8.xpm");
+	else if(keycode == 2)
+		drawblock(map, map->py, map->px, "./sprites/ANIM1F_5.xpm");
+}
+
+int moves(int keycode, t_map *map)
+{
+	if ((keycode == 13 && map->map[map->py - 1][map->px] != '1')| (keycode == 1
+			&& map->map[map->py + 1][map->px] != '1'))
+	{
+		xmoves(keycode, map);
+		return(1);
+	}
+	if ((keycode == 0 && map->map[map->py][map->px - 1] != '1')| (keycode == 2
+			&& map->map[map->py][map->px + 1] != '1'))
+	{
+		ymoves(keycode, map);
+		return(1);
+	}
+	return(0);
 }
