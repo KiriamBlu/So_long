@@ -6,7 +6,7 @@
 /*   By: jsanfeli <jsanfeli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 13:01:54 by jsanfeli          #+#    #+#             */
-/*   Updated: 2021/12/08 02:31:53 by jsanfeli         ###   ########.fr       */
+/*   Updated: 2021/12/13 15:40:26 by jsanfeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	firstenty(int fd, char **save)
 		return ;
 	}
 	aux[num] = '\0';
-	*save = ft_substrconst(aux, 0, num);
+	*save = ft_substrcon(aux, 0, num);
 	free(aux);
 }
 
@@ -35,9 +35,9 @@ char	*doafterjump(char **sa)
 	char	*ai;
 
 	a = ft_beforejump(*sa);
-	ai = ft_substrconst(ft_strchrconst(*sa, '\n'), 0, ft_strlenconst(ft_strchrconst(*sa, '\n')));
+	ai = ft_substrcon(ft_strc(*sa, '\n'), 0, ft_strle(ft_strc(*sa, '\n')));
 	free(*sa);
-	*sa = ft_substrconst(ai, 0, ft_strlenconst(ai));
+	*sa = ft_substrcon(ai, 0, ft_strle(ai));
 	free(ai);
 	return (a);
 }
@@ -49,7 +49,7 @@ void	middlepart(int fd, char **save)
 	char	*check;
 
 	check = NULL;
-	while (!ft_strchrconst(*save, '\n'))
+	while (!ft_strc(*save, '\n'))
 	{
 		aux = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 		num = read(fd, aux, BUFFER_SIZE);
@@ -70,11 +70,11 @@ char	*ft_getline(int fd, char **save)
 	if (!*save)
 		return (NULL);
 	middlepart(fd, &(*save));
-	if (ft_strchrconst(*save, '\n'))
+	if (ft_strc(*save, '\n'))
 		aux = doafterjump(&(*save));
-	else if (ft_strlenconst(*save) > 0)
+	else if (ft_strle(*save) > 0)
 	{
-		aux = ft_substrconst(*save, 0, ft_strlenconst(*save));
+		aux = ft_substrcon(*save, 0, ft_strle(*save));
 		free(*save);
 		*save = NULL;
 	}

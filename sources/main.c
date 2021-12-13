@@ -6,7 +6,7 @@
 /*   By: jsanfeli <jsanfeli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 16:27:35 by jsanfeli          #+#    #+#             */
-/*   Updated: 2021/12/13 14:38:10 by jsanfeli         ###   ########.fr       */
+/*   Updated: 2021/12/13 16:29:56 by jsanfeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	freemap(t_map *map)
 {
 	int	i;
 
-	i = -1;
 	if (map->map)
 	{
+		i = -1;
 		while (map->map[++i])
 			free(map->map[i]);
 		free(map->map);
@@ -34,18 +34,22 @@ int	closewin(t_map *map)
 {
 	freemap(map);
 	printf("Done!\n");
-	exit(0);
+	exit (EXIT_SUCCESS);
 	return (0);
 }
 
 void	printmove(t_map *map, int i)
 {
+	char	*ls;
+
 	if (i == 1)
 	{
 		map->count += 1;
 		printf("Moves: %d\n", map->count);
 		drawblock(map, 0, 5, "./sprites/WHOALL.xpm");
-		mlx_string_put(map->mlx, map->win, 165, 24, 0, ft_itoa(map->count));
+		ls = ft_itoa(map->count);
+		mlx_string_put(map->mlx, map->win, 165, 24, 0, ls);
+		free(ls);
 	}
 	enemymoves(map);
 	if (map->map[map->py][map->px] == 'X')

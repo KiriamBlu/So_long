@@ -6,7 +6,7 @@
 /*   By: jsanfeli <jsanfeli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:30:23 by jsanfeli          #+#    #+#             */
-/*   Updated: 2021/12/13 14:47:50 by jsanfeli         ###   ########.fr       */
+/*   Updated: 2021/12/13 16:23:10 by jsanfeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,65 +14,48 @@
 
 int	ycalculator(int s, int l, t_map *map)
 {
-	if (s <= map->py)
+	if ((s < map->py && map->map[s + 1][l] == '0') |
+		(s < map->py && map->map[s + 1][l] == 'P'))
 	{
-		if (map->map[s + 1][l] == '0' | map->map[s + 1][l] == 'P')
-		{
-			s += 1;
-			if (map->count % 2 == 0)
-				drawblock(map, s, l, "./sprites/ANIM1F_10.xpm");
-			else
-				drawblock(map, s, l, "./sprites/ANIM1F_12.xpm");
-		}
+		s += 1;
+		if (map->count % 2 == 0)
+			drawblock(map, s, l, "./sprites/ANIM1F_10.xpm");
 		else
-			drawblock(map, s, l, "./sprites/ANIM1F_11.xpm");
+			drawblock(map, s, l, "./sprites/ANIM1F_12.xpm");
+	}
+	else if ((s > map->py && map->map[s - 1][l] == '0') |
+		(s > map->py && map->map[s - 1][l] == 'P'))
+	{
+		s -= 1;
+		if (map->count % 2 == 0)
+			drawblock(map, s, l, "./sprites/ANIM1F_15.xpm");
+		else
+			drawblock(map, s, l, "./sprites/ANIM1F_18.xpm");
 	}
 	else
-	{
-		if (map->map[s - 1][l] == '0' | map->map[s - 1][l] == 'P')
-		{
-			s -= 1;
-			if (map->count % 2 == 0)
-				drawblock(map, s, l, "./sprites/ANIM1F_15.xpm");
-			else
-				drawblock(map, s, l, "./sprites/ANIM1F_18.xpm");
-		}
-		else
-			drawblock(map, s, l, "./sprites/ANIM1F_11.xpm");
-	}
+		drawblock(map, s, l, "./sprites/ANIM1F_11.xpm");
 	return (s);
 }
 
 void	movecalculator(int l, int s, t_map *map)
 {	
-	if (l != map->px)
+	if ((l < map->px && map->map[s][l + 1] == '0') |
+		(l < map->px && map->map[s][l + 1] == 'P'))
 	{
-		if (l <= map->px)
-		{
-			if (map->map[s][l + 1] == '0' | map->map[s][l + 1] == 'P')
-			{
-				l += 1;
-				if (map->count % 2 == 0)
-					drawblock(map, s, l, "./sprites/ANIM1F_17.xpm");
-				else
-					drawblock(map, s, l, "./sprites/ANIM1F_14.xpm");
-			}
-			else
-				s = ycalculator(s, l, map);
-		}
+		l += 1;
+		if (map->count % 2 == 0)
+			drawblock(map, s, l, "./sprites/ANIM1F_17.xpm");
 		else
-		{
-			if (map->map[s][l - 1] == '0' | map->map[s][l - 1] == 'P')
-			{
-				l -= 1;
-				if (map->count % 2 == 0)
-					drawblock(map, s, l, "./sprites/ANIM1F_13.xpm");
-				else
-					drawblock(map, s, l, "./sprites/ANIM1F_16.xpm");
-			}
-			else
-				s = ycalculator(s, l, map);
-		}
+			drawblock(map, s, l, "./sprites/ANIM1F_14.xpm");
+	}
+	else if ((l > map->px && map->map[s][l - 1] == '0') |
+		(l > map->px && map->map[s][l - 1] == 'P'))
+	{
+		l -= 1;
+		if (map->count % 2 == 0)
+			drawblock(map, s, l, "./sprites/ANIM1F_13.xpm");
+		else
+			drawblock(map, s, l, "./sprites/ANIM1F_16.xpm");
 	}
 	else
 		s = ycalculator(s, l, map);

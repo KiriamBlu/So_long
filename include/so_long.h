@@ -6,7 +6,7 @@
 /*   By: jsanfeli <jsanfeli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 16:13:57 by jsanfeli          #+#    #+#             */
-/*   Updated: 2021/12/13 14:35:15 by jsanfeli         ###   ########.fr       */
+/*   Updated: 2021/12/13 15:45:30 by jsanfeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,10 @@ typedef struct s_map
 	size_t	x;
 	size_t	c;
 	size_t	p;
-	int 	px;
+	int		px;
 	int		py;
 	size_t	e;
 	int		count;
-	
 }	t_map;
 
 void	parser(int argc, char const **argv, t_map *map);

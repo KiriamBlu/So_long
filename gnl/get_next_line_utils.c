@@ -6,13 +6,13 @@
 /*   By: jsanfeli <jsanfeli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 13:01:54 by jsanfeli          #+#    #+#             */
-/*   Updated: 2021/12/08 02:39:04 by jsanfeli         ###   ########.fr       */
+/*   Updated: 2021/12/13 15:40:31 by jsanfeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-ssize_t	ft_strlenconst(const char *c)
+ssize_t	ft_strle(const char *c)
 {
 	unsigned int	i;
 
@@ -33,7 +33,7 @@ char	*ft_strjoinconst(const char *s1, const char *s2)
 	i = 0;
 	if (!s1 || !s2)
 		return (NULL);
-	str = (char *)malloc((ft_strlenconst(s1) + ft_strlenconst(s2) + 1) * sizeof(char));
+	str = (char *)malloc((ft_strle(s1) + ft_strle(s2) + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
 	while (*(s1 + i) != '\0')
@@ -65,12 +65,12 @@ char	*ft_beforejump(const char *save)
 	aux = (char *)save;
 	if (!aux)
 		return (NULL);
-	len = ft_strlenconst(aux);
+	len = ft_strle(aux);
 	while (i < len)
 	{	
 		if (aux[i] == '\n')
 		{
-			beforebuff = ft_substrconst(aux, 0, i + 1);
+			beforebuff = ft_substrcon(aux, 0, i + 1);
 			return (beforebuff);
 		}
 		i++;
@@ -78,14 +78,14 @@ char	*ft_beforejump(const char *save)
 	return (NULL);
 }
 
-char	*ft_substrconst(const char *s, unsigned int start, size_t len)
+char	*ft_substrcon(const char *s, unsigned int start, size_t len)
 {
 	char	*a;
 	size_t	i;
 	size_t	lens;
 
 	i = 0;
-	lens = ft_strlenconst(s);
+	lens = ft_strle(s);
 	if (!s)
 		return (NULL);
 	if (start >= lens)
@@ -104,14 +104,14 @@ char	*ft_substrconst(const char *s, unsigned int start, size_t len)
 	return (a);
 }
 
-char	*ft_strchrconst(const char *s, int c)
+char	*ft_strc(const char *s, int c)
 {
 	ssize_t	i;
 	ssize_t	j;
 	char	*a;
 
 	i = 0;
-	j = ft_strlenconst(s);
+	j = ft_strle(s);
 	a = (char *)s;
 	if (!s)
 		return (NULL);

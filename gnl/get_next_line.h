@@ -6,7 +6,7 @@
 /*   By: jsanfeli <jsanfeli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 13:05:47 by jsanfeli          #+#    #+#             */
-/*   Updated: 2021/12/08 02:30:59 by jsanfeli         ###   ########.fr       */
+/*   Updated: 2021/12/13 15:53:07 by jsanfeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@
 # include <stdio.h>
 # include <fcntl.h>
 
-#ifndef BUFFER_SIZE	
-# define BUFFER_SIZE 1
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
 
 char	*get_next_line(int fd);
 char	*ft_strjoinconst(char const *s1, char const *s2);
-ssize_t	ft_strlenconst(const char *c);
+ssize_t	ft_strle(const char *c);
 char	*ft_beforejump(const char *aux);
-char	*ft_strchrconst(const char *s, int c);
-char	*ft_substrconst(const char *s, unsigned int start, size_t len);
+char	*ft_strc(const char *s, int c);
+char	*ft_substrcon(const char *s, unsigned int start, size_t len);
 
-#endif
+# endif
 #endif

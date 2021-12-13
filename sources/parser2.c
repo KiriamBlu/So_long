@@ -6,7 +6,7 @@
 /*   By: jsanfeli <jsanfeli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:33:45 by jsanfeli          #+#    #+#             */
-/*   Updated: 2021/12/13 14:35:05 by jsanfeli         ###   ########.fr       */
+/*   Updated: 2021/12/13 16:21:03 by jsanfeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ char	**mountmap(int fd, t_map *map)
 {
 	char	*spliter;
 	char	*aux;
+	char	**ls;
 	char	*tmp;
 
 	spliter = ft_calloc(sizeof(char), 1);
@@ -53,5 +54,7 @@ char	**mountmap(int fd, t_map *map)
 		free(aux);
 		aux = get_next_line(fd);
 	}
-	return (ft_split(spliter, '\n'));
+	ls = ft_split(spliter, '\n');
+	free(spliter);
+	return (ls);
 }

@@ -17,7 +17,7 @@ INC_DIR := ./includes/
 MINILIB	= -L mlx -l mlx -framework OpenGL -framework AppKit
 CC := cc
 GCC := gcc
-CFLAGS := -Wall -Wextra #-Werror  
+CFLAGS := -Wall -Wextra -Werror  
 MV := mv -f
 RM := rm -f
 
@@ -25,7 +25,6 @@ RM := rm -f
 	$(CC)  $(CFLAGS) -c $< -I $(INC_DIR) -o $@ 
 
 $(NAME): $(LIBFT_DIR)$(LIBFT_NAME) $(OBJS)
-	make -C ./mlx
 	gcc $(OBJS) $(MINILIB) $(LIBFT_DIR)$(LIBFT_NAME) -o $(NAME)
 
 $(LIBFT_DIR)$(LIBFT_NAME): $(LIBFT_DIR)
