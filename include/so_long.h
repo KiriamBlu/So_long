@@ -6,7 +6,7 @@
 /*   By: jsanfeli <jsanfeli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 16:13:57 by jsanfeli          #+#    #+#             */
-/*   Updated: 2021/12/09 15:04:51 by jsanfeli         ###   ########.fr       */
+/*   Updated: 2021/12/13 14:35:15 by jsanfeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,14 @@ typedef struct s_map
 	
 }	t_map;
 
-void parser(int argc, char const **argv, t_map *map);
-void drawmap(t_map *map);
-void freemap(t_map *map);
-int moves(int keycode, t_map *map);
-void drawblock(t_map *map, size_t a, size_t b, char *imgname);
-void enemymoves(t_map *map);
-
+void	parser(int argc, char const **argv, t_map *map);
+void	drawmap(t_map *map);
+void	freemap(t_map *map);
+int		moves(int keycode, t_map *map);
+void	drawblock(t_map *map, size_t a, size_t b, char *imgname);
+void	enemymoves(t_map *map);
+char	**mountmap(int fd, t_map *map);
+void	ft_error(char *str, int c, t_map *map);
+void	initiator(t_map *map);
 
 #endif

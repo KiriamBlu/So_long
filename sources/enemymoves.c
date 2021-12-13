@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   enemymoves.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jsanfeli <jsanfeli@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/13 12:30:23 by jsanfeli          #+#    #+#             */
+/*   Updated: 2021/12/13 14:47:50 by jsanfeli         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
-int ycalculator(int s, int l, t_map *map)
+int	ycalculator(int s, int l, t_map *map)
 {
-	if(s < map->py)
+	if (s <= map->py)
 	{
-		if(map->map[s + 1][l] == '0' | map->map[s + 1][l] != 'P')
+		if (map->map[s + 1][l] == '0' | map->map[s + 1][l] == 'P')
 		{
 			s += 1;
-			if(map->count % 2 == 0)
+			if (map->count % 2 == 0)
 				drawblock(map, s, l, "./sprites/ANIM1F_10.xpm");
 			else
 				drawblock(map, s, l, "./sprites/ANIM1F_12.xpm");
@@ -17,99 +29,80 @@ int ycalculator(int s, int l, t_map *map)
 	}
 	else
 	{
-		if(map->map[s - 1][l] == '0' | map->map[s - 1][l] != 'P')
+		if (map->map[s - 1][l] == '0' | map->map[s - 1][l] == 'P')
 		{
 			s -= 1;
-			if(map->count % 2 == 0)
+			if (map->count % 2 == 0)
 				drawblock(map, s, l, "./sprites/ANIM1F_15.xpm");
 			else
 				drawblock(map, s, l, "./sprites/ANIM1F_18.xpm");
 		}
 		else
-			drawblock(map, s, l, "./sprites/ANIM1F_11.xpm");	
+			drawblock(map, s, l, "./sprites/ANIM1F_11.xpm");
 	}
-	return(s);
+	return (s);
 }
 
-void movecalculator(int l, int s, t_map *map)
-{
-	printf("%d\n", l);
-	printf("%d\n", map->px);
-	if(l != map->px)
+void	movecalculator(int l, int s, t_map *map)
+{	
+	if (l != map->px)
 	{
-		if(l < map->px)
+		if (l <= map->px)
 		{
-			if(map->map[s][l + 1] == '0' | map->map[s][l + 1] == 'P')
+			if (map->map[s][l + 1] == '0' | map->map[s][l + 1] == 'P')
 			{
 				l += 1;
-				if(map->count % 2 == 0)
+				if (map->count % 2 == 0)
 					drawblock(map, s, l, "./sprites/ANIM1F_17.xpm");
 				else
 					drawblock(map, s, l, "./sprites/ANIM1F_14.xpm");
 			}
 			else
-				s = ycalculator(s,l,  map);
+				s = ycalculator(s, l, map);
 		}
 		else
 		{
-			if(map->map[s][l - 1] == '0' | map->map[s][l - 1] == 'P')
+			if (map->map[s][l - 1] == '0' | map->map[s][l - 1] == 'P')
 			{
 				l -= 1;
-				if(map->count % 2 == 0)
+				if (map->count % 2 == 0)
 					drawblock(map, s, l, "./sprites/ANIM1F_13.xpm");
 				else
 					drawblock(map, s, l, "./sprites/ANIM1F_16.xpm");
 			}
 			else
-				s = ycalculator(s,l , map);
+				s = ycalculator(s, l, map);
 		}
 	}
 	else
 		s = ycalculator(s, l, map);
-	if(map->map[s][l] != 1)
-		map->map[s][l] = 'X';
+	map->map[s][l] = 'X';
 }
 
-void enemymoves(t_map *map)
+void	enemymoves(t_map *map)
 {
-	size_t i;
-	size_t j;
-	int l;
-	int s;
+	size_t	i;
+	size_t	j;
+	int		l;
+	int		s;
 
 	s = 0;
 	i = -1;
-	printf("%s\n", map->map[0]);
-	printf("%s\n", map->map[1]);
-	printf("%s\n", map->map[2]);
-	printf("%s\n", map->map[3]);
-	printf("%s\n", map->map[4]);
-	printf("%s\n", map->map[5]);
-	printf("%s\n", map->map[6]);
-	printf("--------------------------------------\n");
-	while(++i < map->y)
+	while (++i < map->y)
 	{
 		j = -1;
 		l = 0;
-		while(++j < map->x)
+		while (++j < map->x)
 		{
-			if(map->map[i][j] == 'X')
+			if (map->map[i][j] == 'X')
 			{
 				map->map[i][j] = '0';
 				drawblock(map, i, j, "./sprites/BRIK.xpm");
 				movecalculator(l, s, map);
-				j++;
-				l++;
+				return ;
 			}
 			l++;
 		}
 		s++;
 	}
-	printf("%s\n", map->map[0]);
-			printf("%s\n", map->map[1]);
-			printf("%s\n", map->map[2]);
-			printf("%s\n", map->map[3]);
-			printf("%s\n", map->map[4]);
-			printf("%s\n", map->map[5]);
-			printf("%s\n", map->map[6]);
 }

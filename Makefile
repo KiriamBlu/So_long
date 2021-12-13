@@ -5,6 +5,7 @@ SRCS =  ./gnl/get_next_line.c \
 		./gnl/get_next_line_utils.c \
 		./sources/main.c \
 		./sources/parser.c \
+		./sources/parser2.c \
 		./sources/drawmap.c \
 		./sources/enemymoves.c
 

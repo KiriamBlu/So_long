@@ -6,7 +6,7 @@
 /*   By: jsanfeli <jsanfeli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 17:01:39 by jsanfeli          #+#    #+#             */
-/*   Updated: 2021/12/08 03:43:29 by jsanfeli         ###   ########.fr       */
+/*   Updated: 2021/12/13 14:07:29 by jsanfeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ char	*ft_strdup(const char *s1);
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char *s, char c);
 void	*ft_memcpy(void *dest, const void *src, size_t len);
+char	*ft_itoa(int n);
 
 #endif
